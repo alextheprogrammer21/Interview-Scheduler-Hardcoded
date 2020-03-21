@@ -20,3 +20,15 @@ export function getInterview(state, interview) {
   }
   return null;
 }
+
+export function getInterviewer(state, day) {
+
+
+  let interviewers = [];
+  const filteredDays = state.days.filter(currentDay => currentDay.name === day);
+  if (filteredDays.length > 0 && filteredDays[0].interviewers.length > 0) {
+    interviewers = filteredDays[0].interviewers.map((interviewerId) => state.interviewers[interviewerId]);
+  }
+  return interviewers;
+
+}

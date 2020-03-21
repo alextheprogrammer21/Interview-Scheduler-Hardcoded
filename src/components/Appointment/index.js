@@ -4,7 +4,7 @@ import Header from "components/Appointment/Header.js"
 import Empty from "components/Appointment/Empty.js"
 import Show from "components/Appointment/Show"
 import useVisualMode from "hooks/useVisualMode";
-
+import Form from "components/Appointment/Form";
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -18,6 +18,8 @@ export default function Appointment(props) {
       <Header time={props.time}/>
       
       {mode === EMPTY && <Empty onAdd={() => {transition(CREATE)}} />}
+      {/* {mode === CREATE && <Form onCancel={() => {back}} />} */}
+
 {mode === SHOW && (
   <Show
     student={props.interview.student}
