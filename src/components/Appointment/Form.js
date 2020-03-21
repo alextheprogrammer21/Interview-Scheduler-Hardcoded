@@ -11,7 +11,7 @@ export default function Form(props) {
     setInterviewer(null);
   }
 
-
+setInterviewer([]);
 
   return (
     <main className="appointment__card appointment__card--create">

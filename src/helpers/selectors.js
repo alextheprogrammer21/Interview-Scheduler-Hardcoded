@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
 
   let appointments = [];
   const filteredDays = state.days.filter(currentDay => currentDay.name === day);
@@ -8,4 +8,15 @@ export default function getAppointmentsForDay(state, day) {
     appointments = filteredDays[0].appointments.map((appointmentId) => state.appointments[appointmentId]);
   }
   return appointments;
+}
+
+export function getInterview(state, interview) {
+
+  if (interview) {
+    let student = interview.student;
+    let interviewer = state.interviewers[interview.interviewer];
+    let interviewInfo = { student, interviewer };
+    return interviewInfo;
+  }
+  return null;
 }

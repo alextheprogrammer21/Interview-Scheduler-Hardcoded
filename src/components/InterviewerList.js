@@ -17,8 +17,7 @@ export default function InterviewerList(props) {
           console.log('gonna set interviewer to: ', interviewer.id);
 
           props.setInterviewer(interviewer.id)
-          }
-        }
+        } }
       />
     );
   });

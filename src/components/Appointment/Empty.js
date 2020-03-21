@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Empty(props) {   //Where are the props coming from?
+export default function Empty(props) {   
 
   return (
     <main className="appointment__add">

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList"
 import Appointment from "components/Appointment"
-import getAppointmentsForDay from 'helpers/selectors.js'
+import { getAppointmentsForDay, getInterview } from 'helpers/selectors.js'
+import useVisualMode from "hooks/useVisualMode";
 
 const axios = require('axios').default;
 
@@ -24,14 +25,27 @@ export default function Application(props) {
     Promise.all([
       Promise.resolve(axios.get('http://localhost:8001/api/days')),
       Promise.resolve(axios.get('http://localhost:8001/api/appointments')),
-      Promise.resolve("third"),
+      Promise.resolve(axios.get('http://localhost:8001/api/interviewers')),
     ]).then((all) => {
-      setState(prev => ({ days: all[0].data, appointments: all[1].data, third: all[2] }));
+      setState(prev => ({ days: all[0].data, appointments: all[1].data, third: all[2].data }));
+      console.log("here's the intervierewrs", all[2].data);
     });
 
   },[]);
 
-  let appointments = getAppointmentsForDay(state, state.day)
+  const appointments = getAppointmentsForDay(state, state.day)
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+  
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
 
   return (
     <main className="layout">
