@@ -5,8 +5,10 @@ import InterviewerListItem from "components/InterviewListItem"
 
 export default function InterviewerList(props) {
 
+
+  // const interviewerValues = props.interviewers || []; //useful after fixing main problem
+
   const interviewers = props.interviewers.map(interviewer => {
-    console.log("Whats in my interview list props", props)
     return (
       <InterviewerListItem
         key={interviewer.id}
@@ -14,9 +16,7 @@ export default function InterviewerList(props) {
         avatar={interviewer.avatar}
         selected={interviewer.id === props.value}
         setInterviewer={event => {
-          console.log('gonna set interviewer to: ', interviewer.id);
-
-          props.setInterviewer(interviewer.id)
+          props.onChange(interviewer.id)
         } }
       />
     );

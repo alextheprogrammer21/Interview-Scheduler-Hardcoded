@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Header(props) {   //Where are the props coming from?
+export default function Header(props) {   
 
   return (
     <header className="appointment__time">

@@ -4,14 +4,22 @@ import InterviewerList from "components/InterviewerList"
 export default function Form(props) {  
 
   const [name, setName] = React.useState(props.name || "");
-  const [interviewer, setInterviewer] = React.useState(props.interviewer || null)
+  const [interviewer, setInterviewer] = React.useState(props.interviewers || null)
 
   const reset = function() {
     setName("");
     setInterviewer(null);
   }
 
-setInterviewer([]);
+  const cancel = function() {
+    reset();
+    props.onCancel();
+  }
+  const createAppointmentSubmission = (event) => {
+    event.preventDefault();
+    props.onSave(name, interviewer);
+  }
+// setInterviewer([]);
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -24,19 +32,17 @@ setInterviewer([]);
         placeholder="Enter Student Name"
         onChange={(event) => setName(event.target.value)}
       />
-      Test: {name}
-      Interviewer: {interviewer ? interviewer.name: ""}
     </form>
     <InterviewerList 
       interviewers={props.interviewers} 
-      value={interviewer}
-      setInterviewer={setInterviewer} 
+      value={props.value}
+      // onChange={} 
     />
   </section>
   <section className="appointment__card-right">
     <section className="appointment__actions">
-      <Button danger onClick={reset}>Cancel</Button>
-      <Button confirm onClick={() => props.onSave(name, interviewer)}>Save</Button>
+      <Button danger onClick={cancel}>Cancel</Button>
+      <Button confirm onClick={createAppointmentSubmission}>Save</Button>
     </section>
   </section>
 </main>
