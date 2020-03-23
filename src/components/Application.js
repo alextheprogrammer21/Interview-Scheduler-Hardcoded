@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList"
 import Appointment from "components/Appointment"
-import { getAppointmentsForDay, getInterview, getInterviewer } from 'helpers/selectors.js'
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors.js'
 import useVisualMode from "hooks/useVisualMode";
 
 const axios = require('axios').default;
@@ -36,13 +36,34 @@ export default function Application(props) {
 
   const appointments = getAppointmentsForDay(state, state.day)
 
-  const interviewers = getInterviewer(state, state.day)
+  const interviewers = getInterviewersForDay(state, state.day)
 
   
   const schedule = appointments.map((appointment) => {
 
     const interview = getInterview(state, appointment.interview);
   
+    function bookInterview(id, interview) {
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+
+      return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+      .then(() => {
+        setState({
+          ...state,
+          appointments
+        });
+      })
+      console.log("The values", id, interview);
+    }
+
     return (
       <Appointment
         key={appointment.id}
@@ -50,7 +71,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={appointment.interview}
         interviewersForDay={appointment.interview}
-        interviewers={appointment.interview}
+        interviewers={interviewers}
+        bookInterview = {bookInterview}
       />
     );
   });

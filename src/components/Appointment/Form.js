@@ -15,16 +15,16 @@ export default function Form(props) {
     reset();
     props.onCancel();
   }
-  const createAppointmentSubmission = (event) => {
-    event.preventDefault();
+  const createAppointmentSubmission = () => {
     props.onSave(name, interviewer);
   }
 // setInterviewer([]);
 
+
   return (
     <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
-    <form onSubmit={event => event.preventDefault()} autoComplete="off">
+    <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
       <input
         className="appointment__create-input text--semi-bold"
         name="name"
@@ -32,11 +32,14 @@ export default function Form(props) {
         placeholder="Enter Student Name"
         onChange={(event) => setName(event.target.value)}
       />
+            Test: {name}
+      Interviewer: "setInterviewer"
+
     </form>
     <InterviewerList 
       interviewers={props.interviewers} 
-      value={props.value}
-      // onChange={} 
+      value={interviewer}
+      onChange={setInterviewer} 
     />
   </section>
   <section className="appointment__card-right">

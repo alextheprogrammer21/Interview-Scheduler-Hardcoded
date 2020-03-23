@@ -21,7 +21,7 @@ export function getInterview(state, interview) {
   return null;
 }
 
-export function getInterviewer(state, day) {
+export function getInterviewersForDay(state, day) {
 
 
   let interviewers = [];
