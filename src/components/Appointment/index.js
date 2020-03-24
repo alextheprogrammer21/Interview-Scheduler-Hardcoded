@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status"
 import Confirm from "components/Appointment/Confirm"
+import Error from "components/Appointment/Error"
 export default function Appointment(props) {
 
   
@@ -24,6 +25,11 @@ export default function Appointment(props) {
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM"
+  const EDIT = "EDIT"
+  const ERROR_SAVE = "ERROR_SAVE"
+  const ERROR_DELETE = "ERROR_DELETE"
+  const DELETING = "DELETING"
+
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -37,13 +43,15 @@ function save(name, interviewer) {
   };
   transition(SAVING);
   props.bookInterview(id, interview)  
-  .then(() => {transition(SHOW)});
+  .then(() => {transition(SHOW)})
+  .catch(() => {transition(ERROR_SAVE, true)});
 }
 
 function deleter() {
-
+  transition(DELETING);
   cancelInterview(id)
-  .then(() => {transition(EMPTY)});
+  .then(() => {transition(EMPTY)})
+  .catch(() => {transition(ERROR_DELETE, true)});
 }
 
   return (
@@ -69,13 +77,25 @@ function deleter() {
 
           interviewers={interviewer}
           onDelete={() => {transition(CONFIRM)}}
+          onEdit={() => {{transition(CREATE)}}}
            
           
           // onSave={save}
         />
       )}
       {mode === SAVING && (<Status message={SAVING} />)};
-      {mode === CONFIRM && (<Confirm onConfirm={deleter} message={CONFIRM}/>)}
+      {mode === DELETING && (<Status message={DELETING} />)};
+      {mode === CONFIRM && (<Confirm onConfirm={deleter} onCancel={() => {{back()}}} message={CONFIRM}/>)}
+      {mode === EDIT && ( <Form
+          interviewers={interviewersForDay}
+          onCancel={() => back()}
+          onSave={save}
+          name={interviewer.student}
+          interviewer={interviewer.id}
+        />)}
+      {mode === ERROR_SAVE && (<Error message={"ERROR SAVING"} onClose={() => back()} />)}
+      {mode === ERROR_DELETE && (<Error message={"ERROR DELETING"} onClose={() => {transition(SHOW)}} />)}
+
       {/* {mode === SAVING && <Status message={SAVING} />}
       {mode === DELETING && <Status message={DELETING} />}
       {mode === CONFIRM && (
