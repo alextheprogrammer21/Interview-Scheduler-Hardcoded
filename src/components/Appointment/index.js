@@ -30,6 +30,10 @@ export default function Appointment(props) {
   const ERROR_DELETE = "ERROR_DELETE"
   const DELETING = "DELETING"
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -52,6 +56,7 @@ function deleter() {
   cancelInterview(id)
   .then(() => {transition(EMPTY)})
   .catch(() => {transition(ERROR_DELETE, true)});
+  refreshPage();
 }
 
   return (
