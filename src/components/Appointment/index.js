@@ -61,6 +61,7 @@ function deleter() {
 
   return (
     <article className="appointment">
+      data-testid="appointment"
       <Header time={props.time}/>
       
       
@@ -72,6 +73,7 @@ function deleter() {
       value={props.id}
       interviewers={props.interviewers}
       onCancel={() => {back()}} 
+      name={interviewer.student}
       // onSave={transition(SHOW)}
 
       />}
