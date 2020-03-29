@@ -32,8 +32,8 @@ export default function Application(props) {
         bookInterview = {bookInterview}
         cancelInterview = {cancelInterview}
       />
-    );
-  });
+    )
+  })
 
   return (
     <main className="layout">
@@ -47,7 +47,7 @@ export default function Application(props) {
       <hr className="sidebar__separator sidebar--centered" />
       <nav className="sidebar__menu">
       <DayList 
-      days={state.days} //where does this state.days come from. This is the value we need to change spots on 
+      days={state.days}
       day={state.day} 
       setDay={setDay} />
       </nav>
@@ -61,5 +61,5 @@ export default function Application(props) {
         {schedule}
       </section>
     </main>
-  );
+  )
 }

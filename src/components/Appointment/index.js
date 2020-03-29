@@ -12,10 +12,7 @@ import Error from "components/Appointment/Error"
 export default function Appointment(props) {
   const {
     id,
-    time,
-    interviewers,
     interviewersForDay,
-    bookInterview,
     cancelInterview
   } = props;
 
@@ -61,11 +58,7 @@ function deleter() {
 
   return (
     <article className="appointment">
-      id={props.id}
-      key={props.id}
-      data-testid="appointment"
       <Header time={props.time}/>
-      
       {mode === EMPTY && <Empty onAdd={() => {transition(CREATE)}} />}
       {mode === CREATE && <Form 
         onSave={save}
@@ -83,8 +76,8 @@ function deleter() {
           onEdit={() => {{transition(CREATE)}}}
           />)}
 
-      {mode === SAVING && (<Status message={SAVING} />)};
-      {mode === DELETING && (<Status message={DELETING} />)};
+      {mode === SAVING && (<Status message={SAVING} />)}
+      {mode === DELETING && (<Status message={DELETING} />)}
       {mode === CONFIRM && (<Confirm onConfirm={deleter} onCancel={() => {{back()}}} message={CONFIRM}/>)}
       {mode === EDIT && ( <Form
           interviewers={interviewersForDay}
@@ -96,7 +89,7 @@ function deleter() {
       {mode === ERROR_SAVE && (<Error message={"ERROR SAVING"} onClose={() => back()} />)}
       {mode === ERROR_DELETE && (<Error message={"ERROR DELETING"} onClose={() => {transition(SHOW)}} />)}
     </article>
-  );
+  )
 }
 
 
