@@ -5,13 +5,9 @@ import Appointment from "components/Appointment"
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors.js'
 import useVisualMode from "hooks/useVisualMode";
 import useApplicationData from "hooks/useApplicationData";
-
 const axios = require('axios').default;
 
 export default function Application(props) {
-  // const [days, setDays] = useState([]);
-  // const [day, setDay] = useState("Monday");
-
   const {
     state, 
     setDay,
@@ -19,14 +15,10 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
  
-console.log("What is in the state.days ", state)
   const appointments = getAppointmentsForDay(state, state.day)
-
   const interviewers = getInterviewersForDay(state, state.day)
 
-  
   const schedule = appointments.map((appointment) => {
-
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -58,34 +50,16 @@ console.log("What is in the state.days ", state)
       days={state.days} //where does this state.days come from. This is the value we need to change spots on 
       day={state.day} 
       setDay={setDay} />
-      {/* setState({ ...state, day: "Tuesday" }); */}
-
       </nav>
       <img
         className="sidebar__lhl sidebar--centered"
         src="images/lhl.png"
         alt="Lighthouse Labs"
       />
-
       </section>
       <section className="schedule">
         {schedule}
-        
-        {/* {appointments.map(appointment => {
-          return (
-            <Appointment key = {appointment.id} {...appointment} /> 
-          )
-        })}
- <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={appointment.interview}
-        interviewersForDay={appointment.interview}
-        interviewers={appointment.interview}
-      /> */}
-            </section>
+      </section>
     </main>
   );
 }
-

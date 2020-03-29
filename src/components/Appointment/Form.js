@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "components/Button"
 import InterviewerList from "components/InterviewerList"
-export default function Form(props) {  
 
+export default function Form(props) {  
   const [name, setName] = React.useState(props.name || "");
   const [interviewer, setInterviewer] = React.useState(props.interviewers || null)
   const [error, setError] = React.useState("");
@@ -11,7 +11,6 @@ export default function Form(props) {
     setName("");
     setInterviewer(null);
   }
-
   const cancel = function() {
     reset();
     props.onCancel();
@@ -19,14 +18,11 @@ export default function Form(props) {
   const createAppointmentSubmission = () => {
     props.onSave(name, interviewer);
   }
-// setInterviewer([]);
-
 function validate() {
   if (name === "") {
     setError("Student name cannot be blank");
     return;
   }
-
   props.onSave(name, interviewer);
 }
 
@@ -42,17 +38,12 @@ function validate() {
         data-testid="student-name-input"
         onChange={(event) => setName(event.target.value)}
       />
-            Test: {name}
-      Interviewer: "setInterviewer"
-
       <section className="appointment__validation">{error}</section>
-
     </form>
     <InterviewerList 
       interviewers={props.interviewers} 
       value={interviewer}
       onChange={setInterviewer} 
-
     />
   </section>
   <section className="appointment__card-right">

@@ -1,8 +1,6 @@
 import React from "react";
 
-import { fireEvent } from "@testing-library/react";
-
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent, prettyDOM } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
@@ -90,5 +88,6 @@ describe("Form", () => {
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
 
     expect(onCancel).toHaveBeenCalledTimes(1);
+
   });
 });
