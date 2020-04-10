@@ -42,10 +42,15 @@ function save(name, interviewer) {
     interviewer
   };
 
+  console.log("testing", interviewer)
+  if(typeof interviewer == "number") {
   transition(SAVING);
   props.bookInterview(id, interview)  
   .then(() => {transition(SHOW)})
   .catch(() => {transition(ERROR_SAVE, true)});
+  } else {
+    {transition(ERROR_SAVE, true)}
+  }
 }
 
 function deleter() {
