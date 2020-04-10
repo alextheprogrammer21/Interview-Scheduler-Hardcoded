@@ -10,6 +10,7 @@ import Confirm from "components/Appointment/Confirm"
 import Error from "components/Appointment/Error"
 
 export default function Appointment(props) {
+  //-----------------------Variable and function declerations--------------------
   const {
     id,
     interviewersForDay,
@@ -36,13 +37,11 @@ export default function Appointment(props) {
   
 const interviewer = props.interview && props.interview.interviewer || [];
 
-function save(name, interviewer) {
+function save(name, interviewer) { //Function to save the form data to book the interview
   const interview = {
     student: name,
     interviewer
   };
-
-  console.log("testing", interviewer)
   if(typeof interviewer == "number") {
   transition(SAVING);
   props.bookInterview(id, interview)  
@@ -60,7 +59,7 @@ function deleter() {
   .catch(() => {transition(ERROR_DELETE, true)});
   refreshPage();
 }
-
+//-----------------------CSS Display-------------------------------
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -73,6 +72,7 @@ function deleter() {
         name={interviewer.student}
       />}
       
+        {/* The different displays depending on what you do */}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
