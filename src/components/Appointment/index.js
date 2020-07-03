@@ -3,6 +3,7 @@ import React from "react";
 import Header from "components/Appointment/Header.js"
 import Empty from "components/Appointment/Empty.js"
 import Show from "components/Appointment/Show"
+import Show2 from "components/Appointment/Show2"
 import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status"
@@ -17,8 +18,12 @@ export default function Appointment(props) {
     cancelInterview
   } = props;
 
+  const [refresh, setRefresh] = React.useState(1);
+  const [nameAH, setNameAH] = React.useState("Joe");
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
+  const SHOW2 = "SHOW2";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM"
@@ -45,8 +50,12 @@ function save(name, interviewer) { //Function to save the form data to book the 
   if(typeof interviewer == "number") {
   transition(SAVING);
   props.bookInterview(id, interview)  
+  // transition(SHOW);
   .then(() => {transition(SHOW)})
-  .catch(() => {transition(ERROR_SAVE, true)});
+    .catch(() => {
+      setNameAH(name)
+      transition(SHOW2)});
+  // .catch(() => {transition(ERROR_SAVE, true)});
   } else {
     {transition(ERROR_SAVE, true)}
   }
@@ -56,8 +65,7 @@ function deleter() {
   transition(DELETING);
   cancelInterview(id)
   .then(() => {transition(EMPTY)})
-  .catch(() => {transition(ERROR_DELETE, true)});
-  refreshPage();
+  .catch(() => {transition(EMPTY)});
 }
 //-----------------------CSS Display-------------------------------
   return (
@@ -76,6 +84,14 @@ function deleter() {
       {mode === SHOW && (
         <Show
           student={props.interview.student}
+          interviewers={interviewer}
+          onDelete={() => {transition(CONFIRM)}}
+          onEdit={() => {{transition(CREATE)}}}
+          />)}
+
+{mode === SHOW2 && (
+        <Show2
+          student={nameAH}
           interviewers={interviewer}
           onDelete={() => {transition(CONFIRM)}}
           onEdit={() => {{transition(CREATE)}}}
