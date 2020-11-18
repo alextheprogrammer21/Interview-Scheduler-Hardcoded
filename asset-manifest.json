@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Interview-Scheduler-Hardcoded/static/css/main.5484b534.chunk.css",
-    "main.js": "/Interview-Scheduler-Hardcoded/static/js/main.b12a745b.chunk.js",
-    "main.js.map": "/Interview-Scheduler-Hardcoded/static/js/main.b12a745b.chunk.js.map",
-    "runtime~main.js": "/Interview-Scheduler-Hardcoded/static/js/runtime~main.448b0f26.js",
-    "runtime~main.js.map": "/Interview-Scheduler-Hardcoded/static/js/runtime~main.448b0f26.js.map",
-    "static/css/2.c6907a0b.chunk.css": "/Interview-Scheduler-Hardcoded/static/css/2.c6907a0b.chunk.css",
-    "static/js/2.948464aa.chunk.js": "/Interview-Scheduler-Hardcoded/static/js/2.948464aa.chunk.js",
-    "static/js/2.948464aa.chunk.js.map": "/Interview-Scheduler-Hardcoded/static/js/2.948464aa.chunk.js.map",
-    "index.html": "/Interview-Scheduler-Hardcoded/index.html",
-    "precache-manifest.6d2b830fa8f62439b5cc0de74c5e20d6.js": "/Interview-Scheduler-Hardcoded/precache-manifest.6d2b830fa8f62439b5cc0de74c5e20d6.js",
-    "service-worker.js": "/Interview-Scheduler-Hardcoded/service-worker.js",
-    "static/css/2.c6907a0b.chunk.css.map": "/Interview-Scheduler-Hardcoded/static/css/2.c6907a0b.chunk.css.map",
-    "static/css/main.5484b534.chunk.css.map": "/Interview-Scheduler-Hardcoded/static/css/main.5484b534.chunk.css.map"
+    "main.css": "/Interview-Scheduler/static/css/main.e2e94a38.chunk.css",
+    "main.js": "/Interview-Scheduler/static/js/main.21970480.chunk.js",
+    "main.js.map": "/Interview-Scheduler/static/js/main.21970480.chunk.js.map",
+    "runtime~main.js": "/Interview-Scheduler/static/js/runtime~main.1cf9a4e9.js",
+    "runtime~main.js.map": "/Interview-Scheduler/static/js/runtime~main.1cf9a4e9.js.map",
+    "static/css/2.27c67f14.chunk.css": "/Interview-Scheduler/static/css/2.27c67f14.chunk.css",
+    "static/js/2.948464aa.chunk.js": "/Interview-Scheduler/static/js/2.948464aa.chunk.js",
+    "static/js/2.948464aa.chunk.js.map": "/Interview-Scheduler/static/js/2.948464aa.chunk.js.map",
+    "index.html": "/Interview-Scheduler/index.html",
+    "precache-manifest.2e578e134ffc2e72cf960f1632d514a6.js": "/Interview-Scheduler/precache-manifest.2e578e134ffc2e72cf960f1632d514a6.js",
+    "service-worker.js": "/Interview-Scheduler/service-worker.js",
+    "static/css/2.27c67f14.chunk.css.map": "/Interview-Scheduler/static/css/2.27c67f14.chunk.css.map",
+    "static/css/main.e2e94a38.chunk.css.map": "/Interview-Scheduler/static/css/main.e2e94a38.chunk.css.map"
   }
 }
